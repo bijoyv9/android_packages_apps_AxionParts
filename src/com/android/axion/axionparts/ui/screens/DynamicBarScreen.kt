@@ -111,9 +111,11 @@ import androidx.compose.ui.unit.sp
 import com.android.axion.axionparts.R
 import com.android.axion.compose.preferences.PreferenceGroup
 import com.android.axion.compose.preferences.SecureSettingSwitch
+import com.android.axion.compose.preferences.SecureSettingSlider
 import com.android.axion.compose.preferences.SwitchPreference
 import com.android.axion.compose.preferences.SettingsType
 import com.android.axion.compose.preferences.rememberSettingBoolean
+import com.android.axion.compose.preferences.rememberSettingInt
 import com.android.axion.compose.preferences.rememberSettingString
 import com.android.axion.compose.preferences.rememberSettingsFlow
 import com.android.axion.compose.scaffold.AxionScaffold
@@ -164,6 +166,11 @@ private const val SETTINGS_KEY_ENABLED = "ax_dynamic_bar_enabled"
 private const val SETTINGS_KEY_KEYGUARD_ENABLED = "ax_dynamic_bar_keyguard_enabled"
 private const val SETTINGS_KEY_EVENTS = "ax_dynamic_bar_events"
 private const val SETTINGS_KEY_COMPACT_NOTIFICATIONS = "ax_dynamic_bar_compact_notifications"
+private const val SETTINGS_KEY_CHIP_HEIGHT = "ax_dynamic_bar_chip_height"
+private const val SETTINGS_KEY_VERTICAL_OFFSET = "ax_dynamic_bar_chip_vertical_offset"
+private const val SETTINGS_KEY_HORIZONTAL_OFFSET = "ax_dynamic_bar_chip_horizontal_offset"
+private const val SETTINGS_KEY_EDGE_ROUNDING = "ax_dynamic_bar_chip_edge_rounding"
+private const val SETTINGS_KEY_CUTOUT_POSITION = "ax_dynamic_bar_chip_cutout_position"
 
 @Composable
 fun DynamicBarScreen(onBackClick: () -> Unit) {
@@ -271,6 +278,75 @@ internal fun DynamicBarMainContent(
             Column {
                 Spacer(Modifier.height(20.dp))
 
+                // Appearance settings group
+                PreferenceGroup(title = stringResource(R.string.dynamic_bar_appearance)) {
+                    item {
+                        SecureSettingSlider(
+                            settingKey = SETTINGS_KEY_CHIP_HEIGHT,
+                            title = stringResource(R.string.dynamic_bar_chip_height),
+                            summary = stringResource(R.string.dynamic_bar_chip_height_summary),
+                            min = 20,
+                            max = 36,
+                            defaultValue = 24,
+                            unit = "dp",
+                        )
+                    }
+                    item {
+                        SecureSettingSlider(
+                            settingKey = SETTINGS_KEY_VERTICAL_OFFSET,
+                            title = stringResource(R.string.dynamic_bar_vertical_offset),
+                            summary = stringResource(R.string.dynamic_bar_vertical_offset_summary),
+                            min = -20,
+                            max = 20,
+                            defaultValue = 0,
+                            unit = "dp",
+                        )
+                    }
+                    item {
+                        SecureSettingSlider(
+                            settingKey = SETTINGS_KEY_HORIZONTAL_OFFSET,
+                            title = stringResource(R.string.dynamic_bar_horizontal_offset),
+                            summary = stringResource(R.string.dynamic_bar_horizontal_offset_summary),
+                            min = -40,
+                            max = 40,
+                            defaultValue = 0,
+                            unit = "dp",
+                        )
+                    }
+                    item {
+                        SecureSettingSlider(
+                            settingKey = SETTINGS_KEY_EDGE_ROUNDING,
+                            title = stringResource(R.string.dynamic_bar_edge_rounding),
+                            summary = stringResource(R.string.dynamic_bar_edge_rounding_summary),
+                            min = 0,
+                            max = 100,
+                            defaultValue = 100,
+                            unit = "%",
+                        )
+                    }
+                    item {
+                        SecureSettingSlider(
+                            settingKey = SETTINGS_KEY_CUTOUT_POSITION,
+                            title = stringResource(R.string.dynamic_bar_cutout_position),
+                            summary = stringResource(R.string.dynamic_bar_cutout_position_summary),
+                            min = 0,
+                            max = 2,
+                            defaultValue = 0,
+                            formatValue = { value ->
+                                when (value) {
+                                    0 -> "Off"
+                                    1 -> "Left"
+                                    2 -> "Center"
+                                    else -> "Unknown"
+                                }
+                            }
+                        )
+                    }
+                }
+
+                Spacer(Modifier.height(20.dp))
+
+                // Events settings group
                 PreferenceGroup(title = stringResource(R.string.dynamic_bar_events)) {
                     EVENT_TOGGLES.forEach { toggle ->
                         item {

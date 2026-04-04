@@ -467,6 +467,19 @@
     <string name="dynamic_bar_guide_keyguard_title">Lock screen chip</string>
     <string name="dynamic_bar_footer_title">About Dynamic Bar</string>
     <string name="dynamic_bar_footer_body">Dynamic Bar transforms your status bar into a live activity hub. Timers, media, recordings, and system events surface right where you need them — no notification shade required.\n\nEach event type has its own accent color and expanded card with quick actions.</string>
+    
+    <!-- Dynamic Bar - Appearance Settings -->
+    <string name="dynamic_bar_appearance">Appearance</string>
+    <string name="dynamic_bar_chip_height">Chip height</string>
+    <string name="dynamic_bar_chip_height_summary">Adjust the height of the chip (20-36dp)</string>
+    <string name="dynamic_bar_vertical_offset">Vertical offset</string>
+    <string name="dynamic_bar_vertical_offset_summary">Move chip up or down (-20 to +20dp)</string>
+    <string name="dynamic_bar_horizontal_offset">Horizontal offset</string>
+    <string name="dynamic_bar_horizontal_offset_summary">Move chip left or right (-40 to +40dp)</string>
+    <string name="dynamic_bar_cutout_position">Cutout position</string>
+    <string name="dynamic_bar_cutout_position_summary">Camera cutout alignment: off, left, or center</string>
+    <string name="dynamic_bar_edge_rounding">Edge rounding</string>
+    <string name="dynamic_bar_edge_rounding_summary">Adjust chip corner roundness (0-100%)</string>
 
     <!-- Routines -->
     <string name="routines">Routines</string>
